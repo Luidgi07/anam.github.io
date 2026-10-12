@@ -327,7 +327,7 @@
     <div class="section-head">
       <div>
         <h2>O meu desempenho</h2>
-        <div class="muted">Resumo dos resultados registados</div>
+        <div class="muted">Resumo dos resultados registados da Associação Naval Amorense</div>
       </div>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
         <button class="btn secondary" id="loginBtn">Iniciar sessão</button>
@@ -341,7 +341,7 @@
       <article class="stat">
         <div class="label">Provas registadas</div>
         <div class="number" id="statCount">0</div>
-        <div class="foot">Total de resultados</div>
+        <div class="foot">Total de resultados da Amorense</div>
       </article>
       <article class="stat">
         <div class="label">Melhor marca em piscina</div>
@@ -363,7 +363,7 @@
     <div class="section-head">
       <div>
         <h2>Resultados</h2>
-        <div class="muted">Filtra por disciplina, prova ou competição.</div>
+        <div class="muted">Resultados exclusivos da Associação Naval Amorense. Filtra por disciplina, prova ou competição.</div>
       </div>
       <span class="tiny" id="resultCount">0 resultados</span>
     </div>
@@ -402,7 +402,7 @@
           <tbody id="rows"></tbody>
         </table>
       </div>
-      <div class="empty" id="empty" hidden>Não foram encontrados resultados.</div>
+      <div class="empty" id="empty" hidden>Não foram encontrados resultados da Associação Naval Amorense.</div>
     </div>
 
     <div class="bottom">
@@ -531,10 +531,7 @@
 /*
   CONFIGURAÇÃO DO SUPABASE
 
-  1. SUPABASE_URL: URL do projeto.
-  2. SUPABASE_ANON_KEY: chave pública Publishable/anon.
-  3. ADMIN_UID: UUID do utilizador administrador.
-
+  Usa a URL e a chave pública do teu projeto.
   Nunca coloques a service_role ou uma secret key neste ficheiro.
   As políticas RLS da tabela também têm de proteger as operações.
 */
@@ -542,6 +539,16 @@
 const SUPABASE_URL = 'https://xkdqekxjynrlykbkqynu.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_Chj5_Oe84wTIkQoVE0E-mw_vc3b_7qN';
 const ADMIN_UID = '69b0a557-7ecf-475f-9c1a-866a7b327188';
+
+/*
+  FILTRO DA ASSOCIAÇÃO NAVAL AMORENSE
+
+  A query abaixo assume que a tabela swim_results tem uma coluna
+  chamada club, com o nome do clube em cada resultado.
+*/
+
+const CLUB_COLUMN = 'club';
+const CLUB_FILTER = '%Amorense%';
 
 const $ = id => document.getElementById(id);
 const currentYear = new Date().getFullYear();
@@ -736,16 +743,18 @@ function render() {
     `${Math.min(100, results.length / 20 * 100)}%`;
 }
 
+/* ALTERAÇÃO: carregar exclusivamente resultados da Amorense. */
 async function loadResults() {
   if (!db || loadingResults) return;
 
   loadingResults = true;
-  setStatus('A carregar resultados…');
+  setStatus('A carregar resultados da Associação Naval Amorense…');
 
   try {
     const { data, error } = await db
       .from('swim_results')
       .select('*')
+      .ilike(CLUB_COLUMN, CLUB_FILTER)
       .order('date', { ascending: false });
 
     if (error) throw error;
@@ -753,12 +762,16 @@ async function loadResults() {
     results = data || [];
     populateYears();
     render();
-    setStatus('Resultados atualizados.', 'success');
+
+    setStatus(
+      'Resultados da Associação Naval Amorense carregados.',
+      'success'
+    );
   } catch (error) {
     console.error('Erro ao carregar resultados:', error);
 
     setStatus(
-      'Não foi possível carregar os resultados. Confirma a tabela, as colunas e as políticas RLS no Supabase.',
+      'Não foi possível carregar os resultados. Confirma se existe a coluna "club" na tabela swim_results e se contém "Amorense".',
       'error'
     );
   } finally {
@@ -911,11 +924,15 @@ $('resultForm').addEventListener('submit', async event => {
       response = await db
         .from('swim_results')
         .update(record)
-        .eq('id', idToEdit);
+        .eq('id', idToEdit)
+        .ilike(CLUB_COLUMN, CLUB_FILTER);
     } else {
       response = await db
         .from('swim_results')
-        .insert(record);
+        .insert({
+          ...record,
+          [CLUB_COLUMN]: 'Associação Naval Amorense'
+        });
     }
 
     if (response.error) throw response.error;
@@ -924,14 +941,14 @@ $('resultForm').addEventListener('submit', async event => {
     await loadResults();
 
     setStatus(
-      wasEditing ? 'Resultado atualizado.' : 'Resultado adicionado.',
+      wasEditing ? 'Resultado atualizado.' : 'Resultado adicionado à Amorense.',
       'success'
     );
   } catch (error) {
     console.error('Erro ao guardar resultado:', error);
 
     setStatus(
-      'Não foi possível guardar. Confirma as colunas da tabela e as políticas RLS no Supabase.',
+      'Não foi possível guardar. Confirma se a coluna club existe, as colunas da tabela e as políticas RLS no Supabase.',
       'error'
     );
   } finally {
@@ -972,6 +989,7 @@ $('rows').addEventListener('click', async event => {
         .from('swim_results')
         .delete()
         .eq('id', item.id)
+        .ilike(CLUB_COLUMN, CLUB_FILTER)
         .select('id');
 
       if (error) throw error;
@@ -1034,7 +1052,7 @@ $('export').addEventListener('click', () => {
   const link = document.createElement('a');
 
   link.href = url;
-  link.download = 'resultados-natacao.csv';
+  link.download = 'resultados-associacao-naval-amorense.csv';
   document.body.appendChild(link);
   link.click();
   link.remove();
@@ -1086,7 +1104,6 @@ async function init() {
       session = newSession;
       setAuthUI();
 
-      // Evita chamadas Supabase dentro do callback de autenticação.
       setTimeout(() => {
         if (db) loadResults();
       }, 0);
@@ -1105,3 +1122,4 @@ init();
 </script>
 </body>
 </html>
+

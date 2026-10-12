@@ -59,7 +59,6 @@
       flex: 0 0 56px;
     }
 
-    
     .crest-mark {
       width: 56px;
       height: 56px;
@@ -75,13 +74,12 @@
       letter-spacing: -.06em;
       box-shadow: none;
     }
-    
+
     .crest img {
       width: 56px;
       height: 56px;
       object-fit: contain;
     }
-
 
     .eyebrow {
       color: #d7edff;
@@ -97,7 +95,12 @@
       margin: 34px 0 12px;
     }
 
-    .hero p { max-width: 620px; line-height: 1.6; color: #e7f3ff; }
+    .hero p {
+      max-width: 620px;
+      line-height: 1.6;
+      color: #e7f3ff;
+    }
+
     .hero-bottom { flex-wrap: wrap; margin-top: 22px; }
 
     .pill {
@@ -109,8 +112,17 @@
       font-weight: 700;
     }
 
-    .wrap { max-width: 1160px; margin: auto; padding: 28px 22px 54px; }
-    .section-head { margin-bottom: 16px; flex-wrap: wrap; }
+    .wrap {
+      max-width: 1160px;
+      margin: auto;
+      padding: 28px 22px 54px;
+    }
+
+    .section-head {
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
     h2 { font-size: 23px; margin: 0; letter-spacing: -.03em; }
     h3 { margin-top: 0; }
     .muted, .tiny { color: var(--muted); font-size: 12px; margin-top: 5px; }
@@ -208,10 +220,24 @@
     .empty { text-align: center; padding: 30px; color: var(--muted); }
     [hidden] { display: none !important; }
 
-    .bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
+    .bottom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
     .panel { padding: 20px; }
     .note { font-size: 12px; line-height: 1.65; color: var(--muted); }
-    .progress-row { display: flex; justify-content: space-between; gap: 12px; font-size: 12px; margin: 15px 0 8px; }
+
+    .progress-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 12px;
+      margin: 15px 0 8px;
+    }
+
     .track { height: 8px; background: var(--line); border-radius: 99px; overflow: hidden; }
     .bar { height: 100%; background: var(--green); width: 0; }
 
@@ -277,13 +303,19 @@
   <header class="hero">
     <div class="top">
       <div class="brand">
-        <div class="crest"><div class="crest-mark" role="img" aria-label="Emblema da Associação Naval Amorense"><img src="image-removebg-preview (51).png"></div></div>
+        <div class="crest">
+          <div class="crest-mark" role="img" aria-label="Emblema da Associação Naval Amorense">
+            <img src="image-removebg-preview (51).png" alt="Emblema da Associação Naval Amorense">
+          </div>
+        </div>
         <span>ASSOCIAÇÃO NAVAL AMORENSE <span style="font-weight:450;color:#d7edff">· NATAÇÃO</span></span>
       </div>
       <span class="eyebrow">ÉPOCA 2017 / 2018</span>
     </div>
+
     <h1>Resultados que<br>marcam o ritmo.</h1>
     <p>O meu percurso na natação pura e nas águas abertas. Tempos, provas e evolução — braçada a braçada, sempre com ambição.</p>
+
     <div class="hero-bottom">
       <span class="pill">🏊 Natação pura</span>
       <span class="pill">🌊 Águas abertas</span>
@@ -383,6 +415,7 @@
         </div>
         <div class="track"><div class="bar" id="goalBar"></div></div>
       </section>
+
       <section class="panel">
         <h3>Sobre este registo</h3>
         <p class="note">Este é um registo pessoal de resultados de natação pura e águas abertas. Confirma os dados antes de os partilhares. Este site não é oficial nem afiliado à Associação Naval Amorense.</p>
@@ -401,8 +434,9 @@
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="resultModalTitle">
     <div class="modal-head">
       <h2 id="resultModalTitle">Adicionar resultado</h2>
-      <button class="close" id="closeResult" aria-label="Fechar">✕</button>
+      <button type="button" class="close" id="closeResult" aria-label="Fechar">✕</button>
     </div>
+
     <form id="resultForm">
       <div class="formgrid">
         <div class="field">
@@ -412,39 +446,48 @@
             <option value="open">Águas abertas</option>
           </select>
         </div>
+
         <div class="field">
           <label for="distance">Distância / prova</label>
           <input id="distance" required placeholder="Ex.: 100 m livres">
         </div>
+
         <div class="field full">
           <label for="meet">Competição</label>
           <input id="meet" required placeholder="Nome da competição">
         </div>
+
         <div class="field">
           <label for="date">Data</label>
           <input id="date" type="date" required>
         </div>
+
         <div class="field">
           <label for="time">Marca / tempo</label>
           <input id="time" required placeholder="Ex.: 00:58.42">
         </div>
+
         <div class="field">
           <label for="place">Classificação geral</label>
           <input id="place" placeholder="Ex.: 5.º lugar">
         </div>
+
         <div class="field">
           <label for="ageGroup">Escalão</label>
           <input id="ageGroup" placeholder="Ex.: Juvenis A">
         </div>
+
         <div class="field">
           <label for="ageGroupPlace">Classificação no escalão</label>
           <input id="ageGroupPlace" placeholder="Ex.: 2.º lugar">
         </div>
+
         <div class="field">
           <label for="season">Ano</label>
           <input id="season" type="number" min="2000" max="2100" required>
         </div>
       </div>
+
       <div class="form-actions">
         <button type="button" class="btn secondary" id="cancelResult">Cancelar</button>
         <button type="submit" class="btn" id="saveResult">Guardar resultado</button>
@@ -457,23 +500,27 @@
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
     <div class="modal-head">
       <h2 id="loginTitle">Acesso de administrador</h2>
-      <button class="close" id="closeLogin" aria-label="Fechar">✕</button>
+      <button type="button" class="close" id="closeLogin" aria-label="Fechar">✕</button>
     </div>
+
     <form id="loginForm">
       <div class="formgrid">
         <div class="field full">
           <label for="loginEmail">Email</label>
           <input id="loginEmail" type="email" autocomplete="username" required>
         </div>
+
         <div class="field full">
           <label for="loginPassword">Palavra-passe</label>
           <input id="loginPassword" type="password" autocomplete="current-password" required>
         </div>
       </div>
+
       <p class="tiny">Inicia sessão com a conta de administrador criada no Supabase.</p>
+
       <div class="form-actions">
         <button type="button" class="btn secondary" id="cancelLogin">Cancelar</button>
-        <button type="submit" class="btn">Iniciar sessão</button>
+        <button type="submit" class="btn" id="submitLogin">Iniciar sessão</button>
       </div>
     </form>
   </div>
@@ -482,12 +529,16 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 /*
-  CONFIGURAÇÃO:
-  1. Substitui o URL pelo Project URL do Supabase.
-  2. Usa a Publishable key ou a chave pública anon.
-  3. Substitui ADMIN_UID pelo UUID completo do utilizador administrador.
-  Nunca coloques uma service_role ou secret key neste ficheiro público.
+  CONFIGURAÇÃO DO SUPABASE
+
+  1. SUPABASE_URL: URL do projeto.
+  2. SUPABASE_ANON_KEY: chave pública Publishable/anon.
+  3. ADMIN_UID: UUID do utilizador administrador.
+
+  Nunca coloques a service_role ou uma secret key neste ficheiro.
+  As políticas RLS da tabela também têm de proteger as operações.
 */
+
 const SUPABASE_URL = 'https://xkdqekxjynrlykbkqynu.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_Chj5_Oe84wTIkQoVE0E-mw_vc3b_7qN';
 const ADMIN_UID = '69b0a557-7ecf-475f-9c1a-866a7b327188';
@@ -500,9 +551,10 @@ let session = null;
 let results = [];
 let activeKind = 'all';
 let editingId = null;
+let loadingResults = false;
 
 const configured =
-  /^https:\/\/.+\.supabase\.co\/?$/.test(SUPABASE_URL) &&
+  /^https:\/\/[a-z0-9-]+\.supabase\.co\/?$/i.test(SUPABASE_URL) &&
   SUPABASE_ANON_KEY.length > 20 &&
   !SUPABASE_ANON_KEY.includes('A_TUA_CHAVE') &&
   /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(ADMIN_UID);
@@ -517,7 +569,9 @@ function labelKind(kind) {
 
 function formatDate(value) {
   if (!value) return '—';
+
   const parts = String(value).split('-');
+
   return parts.length === 3
     ? `${parts[2]}/${parts[1]}/${parts[0]}`
     : value;
@@ -540,8 +594,10 @@ function setStatus(message, type = '') {
 
 function setAuthUI() {
   const admin = isAdmin();
+
   $('addTop').hidden = !admin;
   $('loginBtn').textContent = admin ? 'Terminar sessão' : 'Iniciar sessão';
+
   render();
 }
 
@@ -553,8 +609,11 @@ function openResultModal(item = null) {
 
   editingId = item ? item.id : null;
 
-  $('resultModalTitle').textContent = item ? 'Editar resultado' : 'Adicionar resultado';
-  $('saveResult').textContent = item ? 'Guardar alterações' : 'Guardar resultado';
+  $('resultModalTitle').textContent =
+    item ? 'Editar resultado' : 'Adicionar resultado';
+
+  $('saveResult').textContent =
+    item ? 'Guardar alterações' : 'Guardar resultado';
 
   $('kind').value = item?.kind || 'pool';
   $('distance').value = item?.distance || '';
@@ -571,6 +630,8 @@ function openResultModal(item = null) {
 
 function closeResultModal() {
   $('resultModal').classList.remove('open');
+  $('resultForm').reset();
+  $('season').value = currentYear;
   editingId = null;
 }
 
@@ -579,8 +640,9 @@ function closeLoginModal() {
 }
 
 function populateYears() {
-  const years = [...new Set(results.map(r => String(r.season)).filter(Boolean))]
-    .sort((a, b) => Number(b) - Number(a));
+  const years = [...new Set(
+    results.map(r => String(r.season)).filter(Boolean)
+  )].sort((a, b) => Number(b) - Number(a));
 
   const select = $('year');
   const previous = select.value;
@@ -594,7 +656,9 @@ function populateYears() {
     select.appendChild(option);
   });
 
-  if (years.includes(previous)) select.value = previous;
+  if (years.includes(previous)) {
+    select.value = previous;
+  }
 }
 
 function render() {
@@ -619,7 +683,6 @@ function render() {
     return matchesKind && matchesSearch && matchesYear;
   });
 
-  // Esta parte preenche efetivamente a tabela com os resultados carregados.
   $('rows').innerHTML = filtered.map(r => `
     <tr>
       <td>
@@ -653,16 +716,10 @@ function render() {
   $('statCount').textContent = results.length;
   $('statOpen').textContent = results.filter(r => r.kind === 'open').length;
 
-  
   $('statPodium').textContent = results.filter(r => {
-    const position = String(
-      r.overall_place ?? r.place ?? ''
-    ).trim();
-  
-    // Aceita apenas classificações 1.º, 2.º ou 3.º lugar.
+    const position = String(r.overall_place ?? r.place ?? '').trim();
     return /^(?:1|2|3)(?:\.º|\.ª|º|ª|o|a)?(?:\s+ lugar)?$/i.test(position);
   }).length;
-
 
   const pool = results.filter(r =>
     r.kind === 'pool' && /50\s*m?\s*livres/i.test(r.distance || '')
@@ -675,39 +732,46 @@ function render() {
     : '—';
 
   $('goalCount').textContent = `${results.length} / 20`;
-  $('goalBar').style.width = `${Math.min(100, results.length / 20 * 100)}%`;
+  $('goalBar').style.width =
+    `${Math.min(100, results.length / 20 * 100)}%`;
 }
 
 async function loadResults() {
-  if (!db) return;
+  if (!db || loadingResults) return;
 
+  loadingResults = true;
   setStatus('A carregar resultados…');
 
-  const { data, error } = await db
-    .from('swim_results')
-    .select('*')
-    .order('date', { ascending: false });
+  try {
+    const { data, error } = await db
+      .from('swim_results')
+      .select('*')
+      .order('date', { ascending: false });
 
-  if (error) {
+    if (error) throw error;
+
+    results = data || [];
+    populateYears();
+    render();
+    setStatus('Resultados atualizados.', 'success');
+  } catch (error) {
     console.error('Erro ao carregar resultados:', error);
+
     setStatus(
       'Não foi possível carregar os resultados. Confirma a tabela, as colunas e as políticas RLS no Supabase.',
       'error'
     );
-    return;
+  } finally {
+    loadingResults = false;
   }
-
-  results = data || [];
-  populateYears();
-  render();
-  setStatus('Resultados atualizados.', 'success');
 }
 
 document.querySelectorAll('.tab').forEach(button => {
   button.addEventListener('click', () => {
-    document.querySelectorAll('.tab').forEach(tab =>
-      tab.classList.toggle('active', tab === button)
-    );
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.classList.toggle('active', tab === button);
+    });
+
     activeKind = button.dataset.kind;
     render();
   });
@@ -738,16 +802,23 @@ $('loginBtn').addEventListener('click', async () => {
   }
 
   if (isAdmin()) {
-    const { error } = await db.auth.signOut();
+    $('loginBtn').disabled = true;
 
-    if (error) {
+    try {
+      const { error } = await db.auth.signOut();
+
+      if (error) throw error;
+
+      session = null;
+      setAuthUI();
+      setStatus('Sessão terminada.', 'success');
+    } catch (error) {
+      console.error('Erro ao terminar sessão:', error);
       setStatus('Não foi possível terminar a sessão.', 'error');
-      return;
+    } finally {
+      $('loginBtn').disabled = false;
     }
 
-    session = null;
-    setAuthUI();
-    setStatus('Sessão terminada.');
     return;
   }
 
@@ -762,35 +833,45 @@ $('loginForm').addEventListener('submit', async event => {
     return;
   }
 
-  const { data, error } = await db.auth.signInWithPassword({
-    email: $('loginEmail').value.trim(),
-    password: $('loginPassword').value
-  });
+  const submitButton = $('submitLogin');
+  submitButton.disabled = true;
 
-  if (error) {
+  try {
+    const { data, error } = await db.auth.signInWithPassword({
+      email: $('loginEmail').value.trim(),
+      password: $('loginPassword').value
+    });
+
+    if (error) throw error;
+
+    if (data.user.id !== ADMIN_UID) {
+      await db.auth.signOut();
+      session = null;
+      setAuthUI();
+      closeLoginModal();
+
+      setStatus(
+        'Esta conta não está autorizada como administradora.',
+        'error'
+      );
+      return;
+    }
+
+    session = data.session;
+    $('loginForm').reset();
+    closeLoginModal();
+    setAuthUI();
+    setStatus('Sessão de administrador iniciada.', 'success');
+
+    await loadResults();
+  } catch (error) {
     console.error('Erro de login:', error);
     setStatus('Falha no login. Confirma o email e a palavra-passe.', 'error');
-    return;
+  } finally {
+    submitButton.disabled = false;
   }
-
-  if (data.user.id !== ADMIN_UID) {
-    await db.auth.signOut();
-    session = null;
-    setAuthUI();
-    setStatus('Esta conta não está autorizada como administradora.', 'error');
-    closeLoginModal();
-    return;
-  }
-
-  session = data.session;
-  $('loginForm').reset();
-  closeLoginModal();
-  setAuthUI();
-  setStatus('Sessão de administrador iniciada.', 'success');
-  await loadResults();
 });
 
-// Um único listener para adicionar e editar resultados.
 $('resultForm').addEventListener('submit', async event => {
   event.preventDefault();
 
@@ -811,10 +892,17 @@ $('resultForm').addEventListener('submit', async event => {
     season: Number($('season').value)
   };
 
+  if (!record.distance || !record.meet || !record.date ||
+      !record.time || !Number.isInteger(record.season)) {
+    setStatus('Preenche os campos obrigatórios corretamente.', 'error');
+    return;
+  }
+
   const wasEditing = editingId !== null;
   const idToEdit = editingId;
+  const saveButton = $('saveResult');
 
-  $('saveResult').disabled = true;
+  saveButton.disabled = true;
 
   try {
     let response;
@@ -841,12 +929,13 @@ $('resultForm').addEventListener('submit', async event => {
     );
   } catch (error) {
     console.error('Erro ao guardar resultado:', error);
+
     setStatus(
       'Não foi possível guardar. Confirma as colunas da tabela e as políticas RLS no Supabase.',
       'error'
     );
   } finally {
-    $('saveResult').disabled = false;
+    saveButton.disabled = false;
   }
 });
 
@@ -854,40 +943,66 @@ $('rows').addEventListener('click', async event => {
   const editButton = event.target.closest('[data-edit]');
   const deleteButton = event.target.closest('[data-delete]');
 
-  if (!isAdmin()) return;
+  if (!isAdmin() || !db) return;
 
   if (editButton) {
-    const item = results.find(r => String(r.id) === editButton.dataset.edit);
+    const item = results.find(r =>
+      String(r.id) === editButton.dataset.edit
+    );
+
     if (item) openResultModal(item);
     return;
   }
 
   if (deleteButton) {
-    const item = results.find(r => String(r.id) === deleteButton.dataset.delete);
+    const item = results.find(r =>
+      String(r.id) === deleteButton.dataset.delete
+    );
+
     if (!item) return;
 
-    if (!confirm(`Queres apagar "${item.distance}" — ${item.meet}?`)) return;
-
-    const { error } = await db
-      .from('swim_results')
-      .delete()
-      .eq('id', item.id);
-
-    if (error) {
-      console.error('Erro ao apagar resultado:', error);
-      setStatus('Não foi possível apagar. Confirma as políticas RLS.', 'error');
+    if (!confirm(`Queres apagar "${item.distance}" — ${item.meet}?`)) {
       return;
     }
 
-    await loadResults();
-    setStatus('Resultado apagado.', 'success');
+    deleteButton.disabled = true;
+
+    try {
+      const { data, error } = await db
+        .from('swim_results')
+        .delete()
+        .eq('id', item.id)
+        .select('id');
+
+      if (error) throw error;
+
+      if (!data || data.length === 0) {
+        throw new Error('O registo não foi apagado. Verifica as permissões RLS.');
+      }
+
+      await loadResults();
+      setStatus('Resultado apagado.', 'success');
+    } catch (error) {
+      console.error('Erro ao apagar resultado:', error);
+      setStatus(
+        'Não foi possível apagar o resultado. Confirma as permissões RLS no Supabase.',
+        'error'
+      );
+    }
   }
 });
 
 $('export').addEventListener('click', () => {
   const headings = [
-    'Disciplina', 'Prova', 'Competição', 'Data', 'Marca',
-    'Classificação geral', 'Escalão', 'Classificação no escalão', 'Ano'
+    'Disciplina',
+    'Prova',
+    'Competição',
+    'Data',
+    'Marca',
+    'Classificação geral',
+    'Escalão',
+    'Classificação no escalão',
+    'Ano'
   ];
 
   const data = [
@@ -906,10 +1021,15 @@ $('export').addEventListener('click', () => {
   ];
 
   const csv = '\ufeff' + data.map(row =>
-    row.map(value => `"${String(value ?? '').replace(/"/g, '""')}"`).join(';')
-  ).join('\r');
+    row.map(value =>
+      `"${String(value ?? '').replace(/"/g, '""')}"`
+    ).join(';')
+  ).join('\r\n');
 
-  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const blob = new Blob([csv], {
+    type: 'text/csv;charset=utf-8;'
+  });
+
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
 
@@ -918,7 +1038,8 @@ $('export').addEventListener('click', () => {
   document.body.appendChild(link);
   link.click();
   link.remove();
-  URL.revokeObjectURL(url);
+
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
 });
 
 async function init() {
@@ -929,8 +1050,11 @@ async function init() {
       'Falta configurar o URL, a chave pública e o UUID completo no início do código.',
       'error'
     );
+
     $('empty').hidden = false;
-    $('empty').textContent = 'Configura o Supabase para carregar os resultados.';
+    $('empty').textContent =
+      'Configura o Supabase para carregar os resultados.';
+
     $('loginBtn').disabled = true;
     return;
   }
@@ -944,23 +1068,32 @@ async function init() {
   }
 
   try {
-    db = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    db = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_ANON_KEY
+    );
 
     const { data, error } = await db.auth.getSession();
+
     if (error) throw error;
 
     session = data.session;
 
+    setAuthUI();
+    await loadResults();
+
     db.auth.onAuthStateChange((_event, newSession) => {
       session = newSession;
       setAuthUI();
-      if (db) loadResults();
-    });
 
-    setAuthUI();
-    await loadResults();
+      // Evita chamadas Supabase dentro do callback de autenticação.
+      setTimeout(() => {
+        if (db) loadResults();
+      }, 0);
+    });
   } catch (error) {
     console.error('Erro de inicialização:', error);
+
     setStatus(
       'Erro de ligação ao Supabase. Confirma o URL, a chave e as configurações.',
       'error'
